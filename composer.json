@@ -1,0 +1,12 @@
+{
+    "name": "brunno.cruz/as",
+    "require": {
+        "mpdf/mpdf": "^8.0"
+    },
+    "authors": [
+        {
+            "name": "brunno",
+            "email": "brunno@brunno.com"
+        }
+    ]
+}
