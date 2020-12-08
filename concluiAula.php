@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$iduser = $_SESSION['idusuario'];
 $idaula = $_GET['idaula'];
 $idcurso = $_GET['idcurso'];
 $true = 'true';
@@ -18,17 +19,18 @@ try {
 
     $stm->execute();
 
-    $stm = $conn->prepare('SELECT status FROM `as`.cursos where idcursos = :idcurso;');
+    $stm = $conn->prepare('SELECT aulas_concluidas FROM `as`.usuarios_cursos where idcurso = :idcurso and idusuario = :iduser;');
 
-    $stm->bindParam(':idcurso',$idcurso);
+    $stm->bindParam(':idcurso', $idcurso);
+    $stm->bindParam(':iduser', $iduser);
     $stm->execute();
     $qtde = $stm->fetch();
-    $qtdeAulas = ($qtde['status'] + 1);
+    $qtdeAulas = ($qtde['aulas_concluidas'] + 1);
 
-
-    $stm = $conn->prepare('update cursos set status= :status where idcursos = :idcurso;');
+    $stm = $conn->prepare('update usuarios_cursos set aulas_concluidas = :status where idcurso = :idcurso and idUsuario = :iduser;');
     $stm->bindParam(':status', $qtdeAulas);
     $stm->bindParam(':idcurso', $idcurso);
+    $stm->bindParam(':iduser', $iduser);
     $stm->execute();
 
     echo 1;

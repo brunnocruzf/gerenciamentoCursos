@@ -22,14 +22,23 @@ try {
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="all.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+<link rel="stylesheet" type="text/css" href="all.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="fontawesome.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="font-awesome.css" media="screen" />
 <h1>Curso <?= $nome ?></h1>
-
-
 
 <ul class="nav nav-tabs">
     <?php foreach ($aulas as $aula):?>
-        <li><a data-toggle="tab" href="#<?= $aula['aula'] ?>"><?= $aula['aula'] ?></a></li>
+        <li><a data-toggle="tab" href="#<?= $aula['aula'] ?>">
+            <?php
+                if($aula['aulascol'] == true):?>
+                    <i class="fa fa-check" data-toggle="tooltip" data-placement="top" title="Concluido"></i>
+                <?php else: ?>
+                    <i class="fa fa-exclamation" data-toggle="tooltip" data-placement="top" title="Pendente"></i>
+                <?php endif;?>
+            <?= $aula['aula'] ?></a></li>
     <?php endforeach;?>
 </ul>
 
@@ -50,7 +59,7 @@ try {
 </div>
 <script>
     function concluida(idaula,idcurso) {
-        console.log(idaula);
+        console.log(idaula,idcurso);
         $.ajax({
             type: "GET",
             url: 'http://localhost:8080/as/concluiAula.php?idaula='+idaula+'&idcurso='+idcurso,
@@ -70,3 +79,4 @@ try {
     }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

@@ -27,13 +27,27 @@ $nivel = $_SESSION['nivel'];
                 </li>
             <?php endif;?>
             <?php if($nivel == 2):?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cursos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" ">
+                        <a class="dropdown-item" href="cadCurso.php">Cadastrar Curso</a>
+                        <a class="dropdown-item" href="deletaCurso.php">Deletar Curso</a>
+                    </div>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="cadCurso.php">Cadastrar Cursos<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="cadAdmin.php">Cadastrar Administrador<span class="sr-only">(current)</span></a>
                 </li>
             <?php endif; ?>
-            <li class="nav-item active">
+        </ul>
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item active" >
                 <a class="nav-link" href="Logout.php">Logout<span class="sr-only">(current)</span></a>
             </li>
+            </ul>
         </ul>
     </div>
 </nav>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
