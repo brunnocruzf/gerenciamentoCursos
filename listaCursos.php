@@ -70,7 +70,7 @@ function verificaincricao($idcurso)
         console.log(iduser, idcurso);
        $.ajax({
             type: "GET",
-            url: 'http://localhost:8080/as/inscrever.php?iduser=' + iduser + '&idcurso=' + idcurso,
+            url: 'http://localhost/cursos/inscrever.php?iduser=' + iduser + '&idcurso=' + idcurso,
             dataType: 'html',
             success: function (data) {
                 if(data == 1){

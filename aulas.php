@@ -29,40 +29,40 @@ try {
 <link rel="stylesheet" type="text/css" href="font-awesome.css" media="screen" />
 <h1>Curso <?= $nome ?></h1>
 
-<ul class="nav nav-tabs">
-    <?php foreach ($aulas as $aula):?>
-        <li><a data-toggle="tab" href="#<?= $aula['aula'] ?>">
-            <?php
-                if($aula['aulascol'] == true):?>
-                    <i class="fa fa-check" data-toggle="tooltip" data-placement="top" title="Concluido"></i>
-                <?php else: ?>
-                    <i class="fa fa-exclamation" data-toggle="tooltip" data-placement="top" title="Pendente"></i>
-                <?php endif;?>
-            <?= $aula['aula'] ?></a></li>
-    <?php endforeach;?>
-</ul>
 
-<div class="tab-content">
-<?php foreach ($aulas as $aula): ?>
-    <div id="<?= $aula['aula'] ?>" class="tab-pane fade">
-        <h3><?= $aula['aula'] ?></h3>
-        <p>Conteudo da aula</p>
-        <?php
-        if($aula['aulascol'] == true):?>
-            <input name="concluida" type="checkbox" checked> <label for="concluida" checked><a href="#">concluida</a> </label></input>
-        <?php else: ?>
-            <input name="concluida" type="checkbox"> <label for="concluida" checked><a href="#" onclick="concluida(<?= $aula['idaulas'] ?>,<?= $aula['idCurso'] ?>)">concluida</a> </label></input>
-        <?php endif ?>
+<div class="row">
+    <div class="col-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <?php foreach ($aulas as $aula):?>
+                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#<?= $aula['idaulas'] ?>" role="tab" aria-controls="v-pills-home" aria-selected="true"><?= $aula['aula'] ?></a>
+            <?php endforeach;?>
+        </div>
     </div>
-    <?php endforeach;?>
+    <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+            <?php foreach ($aulas as $aula):?>
+                <div class="tab-pane fade" id="<?= $aula['idaulas'] ?>" role="tabpanel" aria-labelledby="<?= $aula['idaulas'] ?>">
+                    <h3><?= $aula['aula'] ?></h3>
+                    <p><?= $aula['descricao'] ?></p>
+                    <?= $aula['url'] ?>
+                    <?php
+                    if($aula['aulascol'] == 0):?>
+                        <input name="concluida" type="checkbox" checked> <label for="concluida" checked><a href="#">concluida</a> </label></input>
+                    <?php else: ?>
+                        <input name="concluida" type="checkbox"> <label for="concluida"><a href="#" onclick="concluida(<?= $aula['idaulas'] ?>,<?= $aula['idCurso'] ?>)">concluida</a> </label></input>
+                    <?php endif ?>
+                </div>
+            <?php endforeach;?>
+        </div>
+    </div>
 </div>
-</div>
+
 <script>
     function concluida(idaula,idcurso) {
         console.log(idaula,idcurso);
         $.ajax({
             type: "GET",
-            url: 'http://localhost:8080/as/concluiAula.php?idaula='+idaula+'&idcurso='+idcurso,
+            url: 'http://localhost/cursos/concluiAula.php?idaula='+idaula+'&idcurso='+idcurso,
             dataType: 'html',
             success: function (data) {
                 if(data == 1){
@@ -78,5 +78,7 @@ try {
         });
     }
 </script>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>

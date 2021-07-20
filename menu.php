@@ -14,7 +14,7 @@ $nivel = $_SESSION['nivel'];
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <?php if ($nivel == 1):?>
+            <?php  if ($nivel == 1):?>
                 <li class="nav-item active">
                     <a class="nav-link" href="listaCursos.php">Cursos<span class="sr-only">(current)</span></a>
                 </li>

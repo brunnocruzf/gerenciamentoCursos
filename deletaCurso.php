@@ -17,7 +17,9 @@ try {
     echo 'ERROR: ' . $e->getMessage();
 }
 
+
 ?>
+
 
 <div class="container" style="margin-top: 30px">
     <div class="row">
@@ -42,7 +44,7 @@ try {
         if (window.confirm("Você realmente excluir curso "+nomecurso+"?")) {
           $.ajax({
                 type: "GET",
-                url: 'http://localhost:8080/as/excluiCurso.php?idcurso=' + idcurso,
+                url: 'http://localhost/cursos/excluiCurso.php?idcurso=' + idcurso,
                 dataType: 'html',
                 success: function (data) {
                     if(data == 1){
