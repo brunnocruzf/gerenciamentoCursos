@@ -34,7 +34,13 @@ try {
     <div class="col-2">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <?php foreach ($aulas as $aula):?>
-                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#<?= $aula['idaulas'] ?>" role="tab" aria-controls="v-pills-home" aria-selected="true"><?= $aula['aula'] ?></a>
+                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#<?= $aula['idaulas'] ?>" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                    <?php if($aula['aulascol'] == 0): ?>
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    <?php elseif ($aula['aulascol'] == 1):?>
+                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                    <?php endif;?>
+                 <?= $aula['aula'] ?></a>
             <?php endforeach;?>
         </div>
     </div>
@@ -47,8 +53,13 @@ try {
                     <?= $aula['url'] ?>
                     <?php
                     if($aula['aulascol'] == 0):?>
+                        <br>
+                        <br>
+
                         <input name="concluida" type="checkbox" checked> <label for="concluida" checked><a href="#">concluida</a> </label></input>
                     <?php else: ?>
+                        <br>
+                        <br>
                         <input name="concluida" type="checkbox"> <label for="concluida"><a href="#" onclick="concluida(<?= $aula['idaulas'] ?>,<?= $aula['idCurso'] ?>)">concluida</a> </label></input>
                     <?php endif ?>
                 </div>
